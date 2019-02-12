@@ -1649,8 +1649,11 @@ p.nominalBounds = new cjs.Rectangle(-225,-448,927,929);
 				var timeType = " שניות, ";
 		
 			} else {
-				clockINminuets = minuets.toString() + ":" + seconds.toString();
-		 timeType = " דקות, ";
+				if (seconds < 10){
+					clockINminuets = minuets.toString() + ":" +"0"+ seconds.toString();
+				}else{clockINminuets = minuets.toString() + ":" + seconds.toString();
+		 timeType = " דקות, ";}
+				
 			}
 			j = 0;
 		
