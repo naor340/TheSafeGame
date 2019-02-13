@@ -485,12 +485,12 @@ p.nominalBounds = new cjs.Rectangle(0,0,68,52);
 	this.shape_2.setTransform(-49,2,1.309,1.309);
 
 	this.shape_3 = new cjs.Shape();
-	this.shape_3.graphics.f("#FFFFFF").s().p("AgGAmIAAggIgfAAIAAgMIAfAAIAAgfIANAAIAAAfIAfAAIAAAMIgfAAIAAAgg");
-	this.shape_3.setTransform(100.1,2.7);
+	this.shape_3.graphics.f("#FFFFFF").s().p("AgHArIAAgkIgiAAIAAgOIAiAAIAAgjIAPAAIAAAjIAiAAIAAAOIgiAAIAAAkg");
+	this.shape_3.setTransform(100,1.7);
 
 	this.shape_4 = new cjs.Shape();
-	this.shape_4.graphics.f("#FFFFFF").s().p("AAkA6IgNgjIgwAAIgMAjIgQAAIAshzIAQAAIAvBzgAgHgXIgNAhIAmAAIgLgfIgIgXQgCAKgEALg");
-	this.shape_4.setTransform(90,2.6);
+	this.shape_4.graphics.f("#FFFFFF").s().p("AAXA3IgIgcIgfAAIgHAcIgZAAIAghsIAgAAIAiBsgAALAIIgGgWIgFgVIgBAAIgEAVIgHAWIAXAAg");
+	this.shape_4.setTransform(89.8,0.6);
 
 	this.shape_5 = new cjs.Shape();
 	this.shape_5.graphics.f().s("#FFFFFF").ss(2).p("ABzAAQAAAwgiAhQghAigwAAQgvAAgigiQghghAAgwQAAgvAhgiQAighAvAAQAwAAAhAhQAiAiAAAvg");
@@ -695,7 +695,7 @@ p.nominalBounds = new cjs.Rectangle(-304.9,-302.5,609.9,602);
 	this.initialize(mode,startPosition,loop,{});
 
 	// Layer_2
-	this.text = new cjs.Text("התחל לשחק", "bold 64px 'Arial'");
+	this.text = new cjs.Text("התחל משימה", "bold 64px 'Arial'");
 	this.text.textAlign = "center";
 	this.text.lineHeight = 74;
 	this.text.lineWidth = 880;
@@ -877,7 +877,7 @@ p.nominalBounds = new cjs.Rectangle(-225,-448,927,929);
 		var j;
 		var questions = []; //הגדרת המערך
 		var instruction = "גרור אל המקום המתאים בקוד, בסיום לחץ בדוק";
-		
+		var gameName;
 		var forcombo;
 		
 		gameManu();
@@ -926,13 +926,15 @@ p.nominalBounds = new cjs.Rectangle(-225,-448,927,929);
 				gameNum = 0;
 				forcombo.startbtn.alpha = 1;
 				forcombo.startPlayingTXT.color = "#FFFFFF";
-		
+				gameName = "משחק ההמצאות";
 				forcombo.startbtn.addEventListener("click", StartAnimation);
 			} //משחק שני
 			if (mychoice == 2) {
 				gameNum = 1;
 				forcombo.startbtn.alpha = 1;
 				forcombo.startPlayingTXT.color = "#FFFFFF";
+				gameName = "משחק האירועים";
+		
 				forcombo.startbtn.addEventListener("click", StartAnimation);
 			}
 		}
@@ -1106,7 +1108,16 @@ p.nominalBounds = new cjs.Rectangle(-225,-448,927,929);
 			locker.alpha = 0.2;
 			stage.addChild(locker);
 			locker.name = "locker";
-		
+			///שם המשחק
+			var gameNameTxt = new createjs.Text();
+			gameNameTxt.color = "grey";
+			gameNameTxt.font = "14px Arial";
+			gameNameTxt.x = 490;
+			gameNameTxt.y = 60;
+			gameNameTxt.textAlign = "center";
+			gameNameTxt.name = "gameNameTxt";
+			gameNameTxt.text = gameName;
+			stage.addChild(gameNameTxt);
 		
 			var check_txt = new createjs.Text();
 			check_txt.color = "white";
@@ -1149,7 +1160,7 @@ p.nominalBounds = new cjs.Rectangle(-225,-448,927,929);
 			var clock = new lib.clock2;
 			stage.addChild(clock);
 			clock.x = 800;
-			clock.y = 65;
+			clock.y = 64;
 			clock.scaleX = 0.5;
 			clock.scaleY = 0.5;
 			clock.name = "clock";
@@ -1227,7 +1238,8 @@ p.nominalBounds = new cjs.Rectangle(-225,-448,927,929);
 				codeBOX.name = "codeBOX" + i;
 				stage.addChild(codeBOX);
 				codeBOX.y = 200;
-				codeBOX.x =  (1217 / Qlength) + (i * 120);
+				codeBOX.x = (1217 / Qlength) + (i * 120);
+				/*		((960 + (700 / Qlength)) / Qlength) + (120 * i);*/
 				codeBOX.scaleX = 0.5;
 				codeBOX.scaleY = 0.5;
 				current[i] = i;
@@ -1553,6 +1565,9 @@ p.nominalBounds = new cjs.Rectangle(-225,-448,927,929);
 			stage.getChildByName("clockTEXT").color = "white";
 			stage.getChildByName("small").color = "white";
 			stage.getChildByName("big").color = "white";
+			stage.getChildByName("gameNameTxt").color = "white";
+		
+		
 		}
 		
 		
@@ -1561,6 +1576,7 @@ p.nominalBounds = new cjs.Rectangle(-225,-448,927,929);
 		function nextQuestionPrep() {
 			var locker = stage.getChildByName("locker");
 			locker.visible = true;
+			stage.getChildByName("gameNameTxt").color = "grey";
 		
 			stage.getChildByName("clockTEXT").color = "black";
 			stage.getChildByName("questionTiltle").color = "black";
@@ -1649,11 +1665,8 @@ p.nominalBounds = new cjs.Rectangle(-225,-448,927,929);
 				var timeType = " שניות, ";
 		
 			} else {
-				if (seconds < 10){
-					clockINminuets = minuets.toString() + ":" +"0"+ seconds.toString();
-				}else{clockINminuets = minuets.toString() + ":" + seconds.toString();
-		 timeType = " דקות, ";}
-				
+				clockINminuets = minuets.toString() + ":" + seconds.toString();
+				timeType = " דקות, ";
 			}
 			j = 0;
 		
@@ -1726,6 +1739,7 @@ p.nominalBounds = new cjs.Rectangle(-225,-448,927,929);
 			stage.removeChild(stage.getChildByName("clockTEXT"));
 			stage.removeChild(stage.getChildByName("playbtn"));
 			stage.removeChild(stage.getChildByName("messageTiltle"));
+			stage.removeChild(stage.getChildByName("gameNameTxt"));
 		
 		}
 		//move Drager
@@ -1798,7 +1812,7 @@ p.nominalBounds = new cjs.Rectangle(-225,-448,927,929);
 	this.instance.setTransform(83,33,0.709,0.68);
 
 	this.shape_1 = new cjs.Shape();
-	this.shape_1.graphics.f().s("#000000").ss(1,1,1).p("EhK7guCMCV3AAAEBK8AuDMiV3AAA");
+	this.shape_1.graphics.f().s("#000000").ss(1,1,1).p("EBK8AuDMiV3AAAEhK7guCMCV3AAA");
 	this.shape_1.setTransform(476.7,295.4);
 
 	this.shape_2 = new cjs.Shape();
@@ -1818,10 +1832,10 @@ lib.properties = {
 	color: "#CCCCCC",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/TheSafe_atlas_.png?1549990069789", id:"TheSafe_atlas_"},
-		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1549990069849", id:"lib/jquery-2.2.4.min.js"},
-		{src:"components/sdk/anwidget.js?1549990069849", id:"sdk/anwidget.js"},
-		{src:"components/ui/src/combobox.js?1549990069849", id:"an.ComboBox"}
+		{src:"images/TheSafe_atlas_.png?1550064281348", id:"TheSafe_atlas_"},
+		{src:"https://code.jquery.com/jquery-2.2.4.min.js?1550064281404", id:"lib/jquery-2.2.4.min.js"},
+		{src:"components/sdk/anwidget.js?1550064281404", id:"sdk/anwidget.js"},
+		{src:"components/ui/src/combobox.js?1550064281404", id:"an.ComboBox"}
 	],
 	preloads: []
 };
