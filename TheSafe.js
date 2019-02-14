@@ -695,8 +695,7 @@ p.nominalBounds = new cjs.Rectangle(-304.9,-302.5,609.9,602);
 	this.initialize(mode,startPosition,loop,{});
 
 	// Layer_2
-	this.text = new cjs.Text("
-				 משימה", "bold 64px 'Arial'");
+	this.text = new cjs.Text("התחל משימה", "bold 64px 'Arial'");
 	this.text.textAlign = "center";
 	this.text.lineHeight = 74;
 	this.text.lineWidth = 880;
