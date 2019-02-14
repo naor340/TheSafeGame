@@ -695,7 +695,8 @@ p.nominalBounds = new cjs.Rectangle(-304.9,-302.5,609.9,602);
 	this.initialize(mode,startPosition,loop,{});
 
 	// Layer_2
-	this.text = new cjs.Text("התחל משימה", "bold 64px 'Arial'");
+	this.text = new cjs.Text("
+				 משימה", "bold 64px 'Arial'");
 	this.text.textAlign = "center";
 	this.text.lineHeight = 74;
 	this.text.lineWidth = 880;
@@ -946,7 +947,7 @@ p.nominalBounds = new cjs.Rectangle(-225,-448,927,929);
 			stage.removeChild(forcombo);
 			i = 0;
 			//	say = " _,שלום סוכן\n \n_משימתך לפרוץ את כל הכספות \n _סדר את האפשרויות בסדר הנכון בקוד\n \n _השתמש בעכבר כדי לגרור את התשובות הנכונות על מנת שתוכל לפרוץ את הכספת\n \n_בלחיצה על ״התחל לשחק״. הודעה זו תשמיד את עצמה  "
-			say = " _,שלום סוכן\n \n_משימתך לפרוץ את כל הכספות \n _סדר את האפשרויות בסדר הנכון בקוד\n \n _השתמש בעכבר כדי לגרור את התשובות \n \n_בלחיצה על ״התחל לשחק״ הודעה זו תשמיד את עצמה  "
+			say = " _,שלום סוכן\n \n_משימתך לפרוץ את כל הכספות \n _סדר את האפשרויות בסדר הנכון בקוד\n \n _השתמש בעכבר כדי לגרור את התשובות \n \n_בלחיצה על ״התחל משימה״ הודעה זו תשמיד את עצמה  "
 			self.black.visible = true;
 			openINTERVAL = setInterval(firstTypingEffect, 50);
 			self.black.txt.text = say[0];
